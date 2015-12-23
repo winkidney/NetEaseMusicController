@@ -1,0 +1,2 @@
+# NetEaseMusicController
+躺在床上控制控制PC上的网易云音乐

@@ -1,0 +1,13 @@
+{
+  "name": "naiveClient",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "react-native": "^0.17.0",
+    "react-native-material-kit": "^0.2.4"
+  }
+}

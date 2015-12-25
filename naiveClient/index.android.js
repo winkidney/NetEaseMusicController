@@ -54,9 +54,7 @@ var naiveClient = React.createClass({
   },
 
   componentDidMount: async function () {
-    this._inputServerAddress = _.debounce(this._inputServerAddress, 300);
     var value = await AsyncStorage.getItem('serverAddress');
-    console.log(value);
     this.setState({
       serverAddress: value
     });

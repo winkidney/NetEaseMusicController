@@ -5,7 +5,6 @@ var {
   AppRegistry,
   Text,
   View,
-  Alert,
   ScrollView,
   AsyncStorage,
   ToastAndroid,
@@ -15,7 +14,6 @@ const MK = require('react-native-material-kit');
 
 const {
   MKButton,
-  MKColor,
   MKTextField,
   } = MK;
 
@@ -56,9 +54,7 @@ var naiveClient = React.createClass({
   },
 
   componentDidMount: async function () {
-    this._inputServerAddress = _.debounce(this._inputServerAddress, 300);
     var value = await AsyncStorage.getItem('serverAddress');
-    console.log(value);
     this.setState({
       serverAddress: value
     });
@@ -143,7 +139,7 @@ var naiveClient = React.createClass({
           <View style={styles.col}>
             <PlayPauseButton onPress={() => this._togglePlayState()}>
               <Text style={styles.buttonText}>
-                {this.state.playState ? '暂停' : '播放'}
+                播放 / 暂停
               </Text>
             </PlayPauseButton>
           </View>

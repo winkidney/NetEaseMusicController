@@ -8,41 +8,19 @@ var {
   ScrollView,
   AsyncStorage,
   ToastAndroid,
+  Alert,
   } = React;
-
-const MK = require('react-native-material-kit');
-
-const {
-  MKButton,
-  MKTextField,
-  } = MK;
-
 
 import _ from 'lodash';
 import {styles} from './Styles';
 
-const SetServerButton = MKButton.accentColoredButton()
-  .withText('设置服务器')
-  .build();
-
-const ServerAddressInput = MKTextField.textfieldWithFloatingLabel()
-  .withPlaceholder('服务器地址：端口')
-  .withStyle(styles.textfieldWithFloatingLabel)
-  .withFloatingLabelFont({
-    fontSize: 10,
-    fontStyle: 'italic',
-    fontWeight: '200',
-  })
-  .withKeyboardType('numeric')
-  .build();
-
-const ControllerButton = MKButton.coloredButton()
-  .withStyle(styles.controllerButton)
-  .build();
-
-const PlayPauseButton = MKButton.accentColoredButton()
-  .withStyle(styles.playPauseButton)
-  .build();
+import {
+  SetServerButton,
+  ServerAddressInput,
+  ControllerButton,
+  PlayPauseButton,
+  ShutdownButton,
+} from './ButtonSets';
 
 var naiveClient = React.createClass({
   getInitialState: function () {
@@ -102,6 +80,17 @@ var naiveClient = React.createClass({
     if (this.state.connectedServer) {
       fetch('http://' + this.state.serverAddress + '?action=' + command);
     }
+  },
+
+  _confirmShutdown: function () {
+    Alert.alert(
+      '提示',
+      '确认要关机吗',
+      [
+        {text: '取消', style: 'cancel'},
+        {text: '确定', onPress: () => this._sendCommand('shutdown')}
+      ]
+    );
   },
 
   render: function() {
@@ -168,10 +157,18 @@ var naiveClient = React.createClass({
           <Text style={styles.textLine}>
             服务器版本: {this.state.serverInfo.version}
           </Text>
+          <Text style={styles.textLine}>
+            服务器平台: {this.state.serverInfo.platform}
+          </Text>
         </View>
 
         <View style={styles.row}>
           <Text>Powered By React Native.</Text>
+        </View>
+
+        <View style={styles.shutdownButton}>
+
+          <ShutdownButton onPress={() => this._confirmShutdown()}/>
         </View>
       </ScrollView>
     );

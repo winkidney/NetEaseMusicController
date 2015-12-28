@@ -57,11 +57,11 @@ def hello_world():
 # 移动端连接服务器校验
 @app.route('/mobile_connect')
 def mobile_connect():
-    response = jsonify(code=200, message="Connected", status=1, version="0.0.1")
+    response = jsonify(code=200, message="Connected", platform="win", status=1, version="0.0.1")
     response.status_code = 200
     return response
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=10010)
 

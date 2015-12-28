@@ -31,15 +31,21 @@ class MusicBox(object):
 
     @classmethod
     def volume_up(cls):
-        cls._press_keys((MOD_CONTROL, K_F6))
+        # 按需修改
+        # cls._press_keys((MOD_CONTROL, K_F6))
+        pass
 
     @classmethod
     def volume_down(cls):
-        cls._press_keys((MOD_CONTROL, K_F4))
+        # 按需修改
+        # cls._press_keys((MOD_CONTROL, K_F4))
+        pass
 
     @classmethod
     def shutdown(cls):
-        os.system("shutdown -s -t 5")
+        # 目前不支持 OS X 环境
+        # os.system("shutdown -s -t 5")
+        pass
 
 
 @app.route('/')
@@ -54,11 +60,11 @@ def hello_world():
 # 移动端连接服务器校验
 @app.route('/mobile_connect')
 def mobile_connect():
-    response = jsonify(code=200, message="Connected", status=1, version="0.0.1")
+    response = jsonify(code=200, message="Connected", platform="osx", status=1, version="0.0.1")
     response.status_code = 200
     return response
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=10010)
 

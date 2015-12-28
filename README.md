@@ -29,4 +29,7 @@ http://192.168.1.4
 
 ![控制页面](resources/ui.jpg)
 
+## 备注
+
+关机功能仅支持 Windows 平台。
 

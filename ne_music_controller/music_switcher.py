@@ -1,24 +1,34 @@
 # coding: utf-8
 import os
 from flask import Flask, request, jsonify
+import autopy
+
 from autopy.key import (
     toggle,
-    K_CONTROL,
-    K_F3,
-    K_F1,
-    K_F2, K_F4, K_F6)
+    Modifier,
+    Code,
+)
+
+K_CONTROL = Modifier.CONTROL
+K_F3 = Code.F3
+K_F1 = Code.F1
+K_F2 = Code.F2
+K_F4 = Code.F4
+K_F6 = Code.F6
 
 
 app = Flask(__name__)
 project_root = os.path.abspath(".")
-template = open(os.path.join(project_root, "templates/index.html"), "r").read()
+template = open(os.path.join(project_root, "templates/index.html"), "r", encoding="utf-8").read()
 
 
 class MusicBox(object):
     @classmethod
     def _press_keys(cls, keys):
-        map(lambda key: toggle(key, True), keys)
-        map(lambda key: toggle(key, False), keys)
+        autopy.key.tap(
+            keys[1],
+            [keys[0]]
+        )
 
     @classmethod
     def next_song(cls):
